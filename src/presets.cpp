@@ -1,35 +1,20 @@
 #include <Arduino.h>
-#include <ShiftRegister74HC595.h>
-#include <MIDI.h>
 
 #include <displays.h>
 #include <presets.h>
+#include <globals.h>
 
-bool command_sent[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 
-/*
-    Channel  1: Eventide ModFactor
-    Channel  2: Strymon Iridium
-    *Channel  3: Strymon Compadre
-    Channel  4: Source Audio Programmable EQ
-    *Channel  5: Source Audio Collider
-    Channel 16: MIDI Switcher
-*/
 
-const byte CH_MODFACTOR = 1;
-const byte CH_IRIDIUM = 2;
-const byte CH_EQ = 4;
-const byte CH_SWITCHER = 16;
-
-void callPreset(byte bank, byte program, ShiftRegister74HC595<3> sr, midi::MidiInterface<midi::SerialMIDI<HardwareSerial>> MIDI)
+void callPreset(byte bank, byte program)
 {
 
-    msgFlicker(FLICKER_FAST, 5, getNumberToPrint(bank, program), sr);
+    msgFlicker(FLICKER_FAST, 5, getNumberToPrint(bank, program));
 
     byte displayPrint[3];
     for (int i = 0; i < 3; i++)
         displayPrint[i] = getNumberToPrint(bank, program)[i];
-    sr.setAll(displayPrint);
+    sevenSeg.setAll(displayPrint);
 
     for (byte i = 0; i < NUM_LEDS; i++)
     {
@@ -45,7 +30,7 @@ void callPreset(byte bank, byte program, ShiftRegister74HC595<3> sr, midi::MidiI
         switch (program)
         {
         case 1:
-            preset_1_1(MIDI);
+            preset_1_1();
             break;
         }
     }
@@ -54,7 +39,7 @@ void callPreset(byte bank, byte program, ShiftRegister74HC595<3> sr, midi::MidiI
         command_sent[i] = false;
 }
 
-void preset_1_1(midi::MidiInterface<midi::SerialMIDI<HardwareSerial>> MIDI)
+void preset_1_1()
 {
     MIDI.sendProgramChange(0, CH_IRIDIUM); // Iridium Clean
 
@@ -66,5 +51,5 @@ void preset_1_1(midi::MidiInterface<midi::SerialMIDI<HardwareSerial>> MIDI)
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
-    setDisplay(F("CLEAN"), F("GENERIC"));
+    setOled(F("CLEAN"), F("GENERIC"));
 }

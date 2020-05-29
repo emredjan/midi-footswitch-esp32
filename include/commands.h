@@ -1,7 +1,9 @@
-#include <Arduino.h>
-#include <ShiftRegister74HC595.h>
+#ifndef COMMANDS_H_
+#define COMMANDS_H_
 
-void callCommand(byte program, ShiftRegister74HC595<3> sr);
+#include <Arduino.h>
+
+void callCommand(byte program);
 
 void command_1();
 void command_2();
@@ -11,3 +13,6 @@ void command_5();
 void command_6();
 void command_7();
 void command_8();
+
+
+#endif

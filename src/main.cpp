@@ -1,156 +1,25 @@
 #include <Arduino.h>
 
-#include <JC_Button.h>
-#include <ShiftRegister74HC595.h>
-#include <MIDI.h>
-
+#include <globals.h>
 #include <displays.h>
 #include <presets.h>
 #include <commands.h>
 #include <midiclock.h>
-
-MIDI_CREATE_DEFAULT_INSTANCE();
-
-
-/*** Button Things ***/
-
-const byte BUTTON_PINS[] = {2, 4, 16, 17, 18, 19, 23};
-
-const unsigned int LONG_PRESS = 600;
-
-Button button1(BUTTON_PINS[0]);
-Button button2(BUTTON_PINS[1]);
-Button button3(BUTTON_PINS[2]);
-Button button4(BUTTON_PINS[3]);
-Button button5(BUTTON_PINS[4]);
-Button button6(BUTTON_PINS[5]);
-Button button7(BUTTON_PINS[6]);
-
-
-/*** Shift Register Things ***/
-
-const byte SR_NUM_REGISTERS = 3;
-const byte SR_SDI_PIN = 13;
-const byte SR_SCLK_PIN = 33;
-const byte SR_LOAD_PIN = 32;
-
-ShiftRegister74HC595<SR_NUM_REGISTERS> sr(SR_SDI_PIN, SR_SCLK_PIN, SR_LOAD_PIN);
-
-
-/*** MIDI Utilities ***/
-
-const byte MIN_BANK = 1;
-const byte MAX_BANK = 5;
-
-
-//TODO: Move MIDI Clock handling to separate file
-/*** MIDI Clock Handling ***/
-
-
-unsigned long bpm = 120;
-unsigned long prevBpm = 120;
-unsigned long usPerTick = (unsigned long)(1e6 / (bpm * 24.0 / 60.0));
-unsigned long prevTime = 0UL;
-
-const unsigned long MIN_BPM = 30;
-const unsigned long MAX_BPM = 300;
-
-unsigned long currentTimer[5] = {1000000, 1000000, 1000000, 1000000, 1000000};
-unsigned long lastTap = 0UL;
-
-unsigned long usPerTap = 0UL;
-byte tapCounter = 0;
-
-bool midiClockState = false;
-
-unsigned long prevBlink = 0UL;
-bool ledState = 0;
-
-
-void tapTempo(ShiftRegister74HC595<3> sr)
-{
-
-    if (tapCounter == 0 && !midiClockState)
-    {
-        MIDI.sendRealTime(midi::MidiType::Stop);
-        midiClockState = !midiClockState;
-        MIDI.sendRealTime(midi::MidiType::Start);
-    }
-
-    for (byte i = 4; i > 0; i--)
-        currentTimer[i] = currentTimer[i - 1];
-
-    currentTimer[0] = micros() - lastTap;
-    lastTap = micros();
-
-    tapCounter++;
-
-    if (tapCounter >= 3)
-    {
-
-        byte numAverage = tapCounter - 1;
-        unsigned long totalTimer = 0UL;
-
-        for (byte i = 0; i < numAverage; i++)
-            totalTimer += currentTimer[i];
-
-        usPerTap = totalTimer / numAverage;
-        bpm = (unsigned long)60e6 / usPerTap;
-        tapCounter--;
-    }
-
-    byte displayPrint[3];
-
-    if (bpm != prevBpm)
-    {
-        for (int i = 0; i < 3; i++)
-            displayPrint[i] = getNumberToPrint(bpm)[i];
-        sr.setAll(displayPrint);
-    }
-
-    setDisplay(F("BPM"), F("CLK ON"));
-}
-
-void handleMidiClock()
-{
-    if (bpm != prevBpm)
-    {
-        usPerTick = (unsigned long)(1e6 / (bpm * 24.0 / 60.0));
-        prevBpm = bpm;
-    }
-
-    if (micros() - prevTime >= usPerTick)
-    {
-        prevTime += usPerTick;
-        if (bpm >= MIN_BPM && bpm <= MAX_BPM)
-        {
-            MIDI.sendRealTime(midi::MidiType::Clock);
-        }
-    }
-}
-
-//TODO: Tempo leds
-void handleTempoLed(ShiftRegister74HC595<3> sr)
-{
-    if (micros() - prevBlink >= usPerTick * 12)
-    {
-        ledState = !ledState;
-        prevBlink += usPerTick * 12;
-        // set 7 segment dots for tempo display
-        // sr.set(7, !ledState);
-        // sr.set(15, !ledState);
-        // sr.set(23, !ledState);
-    }
-}
-
+#include <expression.h>
 
 
 void setup()
 {
 
+    analogReadResolution(12);
+    analogSetPinAttenuation(EXPR_PIN, ADC_11db);
+
+    expressionEnabled = true;
+
     for (byte i = 0; i < NUM_LEDS; i++)
         pinMode(LED_PINS[i], OUTPUT);
 
+    Serial.begin(115200);
     MIDI.begin(MIDI_CHANNEL_OMNI);
 
     button1.begin();
@@ -163,12 +32,15 @@ void setup()
 
     // Start by displaying a dash
     byte displayPrint[3] = {B10111111, B10111111, B10111111};
-    sr.setAll(displayPrint);
+    sevenSeg.setAll(displayPrint);
 
 }
 
 void loop()
 {
+
+    if (expressionEnabled)
+        handleExpression(expressionCC, expressionChannel);
 
     /*** Handle MIDI Clock ***/
 
@@ -178,7 +50,7 @@ void loop()
     if (midiClockState)
     {
         handleMidiClock();
-        handleTempoLed(sr);
+        handleTempoLed();
     }
 
     /*** Handle Buttons ***/
@@ -251,64 +123,64 @@ void loop()
 
     case SHORT_1:
         if (commandMode)
-            callCommand(1, sr);
+            callCommand(1);
         else
-            callPreset(bankNum, 1, sr, MIDI);
+            callPreset(bankNum, 1);
         STATE = WAIT;
         break;
 
     case SHORT_2:
         if (commandMode)
-            callCommand(2, sr);
+            callCommand(2);
         else
-            callPreset(bankNum, 2, sr, MIDI);
+            callPreset(bankNum, 2);
         STATE = WAIT;
         break;
 
     case SHORT_3:
         if (commandMode)
-            callCommand(3, sr);
+            callCommand(3);
         else
-            callPreset(bankNum, 3, sr, MIDI);
+            callPreset(bankNum, 3);
         STATE = WAIT;
         break;
 
     case SHORT_4:
         if (commandMode)
-            callCommand(4, sr);
+            callCommand(4);
         else
-            callPreset(bankNum, 4, sr, MIDI);
+            callPreset(bankNum, 4);
         STATE = WAIT;
         break;
 
     case SHORT_5:
-        callCommand(5, sr);
+        callCommand(5);
         STATE = WAIT;
         break;
 
     case SHORT_6:
-        callCommand(6, sr);
+        callCommand(6);
         STATE = WAIT;
         break;
 
     case SHORT_7:
-        // callCommand(7, sr);
-        tapTempo(sr);
+        // callCommand(7);
+        tapTempo();
         STATE = WAIT;
         break;
 
     case TO_LONG_1:
         if (!commandMode)
         {
-            setDisplay(F("CMD"));
-            callCommand(0, sr);
+            setOled(F("CMD"));
+            callCommand(0);
             for (byte i = 0; i < 4; i++)
                 command_sent[i] = false;
         }
         else
         {
-            setDisplay(F("READY"));
-            callPreset(bankNum, 0, sr, MIDI);
+            setOled(F("READY"));
+            callPreset(bankNum, 0);
         }
 
         if (button1.wasReleased())
@@ -321,13 +193,13 @@ void loop()
         break;
 
     case TO_LONG_2:
-        callCommand(0, sr);
+        callCommand(0);
         if (button2.wasReleased())
             STATE = LONG_2;
         break;
 
     case LONG_2:
-        callCommand(8, sr);
+        callCommand(8);
         STATE = WAIT;
         break;
 
@@ -335,13 +207,13 @@ void loop()
         if (commandMode)
         {
             if (button3.wasReleased())
-                callCommand(3, sr);
+                callCommand(3);
             STATE = WAIT;
         }
         else
         {
             newBankNum = _min(bankNum + 1, MAX_BANK);
-            callPreset(newBankNum, 0, sr, MIDI);
+            callPreset(newBankNum, 0);
             if (button3.wasReleased())
                 STATE = LONG_3;
         }
@@ -356,13 +228,13 @@ void loop()
         if (commandMode)
         {
             if (button4.wasReleased())
-                callCommand(4, sr);
+                callCommand(4);
             STATE = WAIT;
         }
         else
         {
             newBankNum = _max(bankNum - 1, MIN_BANK);
-            callPreset(newBankNum, 0, sr, MIDI);
+            callPreset(newBankNum, 0);
             if (button4.wasReleased())
                 STATE = LONG_4;
         }
@@ -382,17 +254,17 @@ void loop()
         byte displayPrint[3];
         for (int i = 0; i < 3; i++)
             displayPrint[i] = getNumberToPrint(bpm)[i];
-        sr.setAll(displayPrint);
+        sevenSeg.setAll(displayPrint);
 
         if (midiClockState)
         {
             //MIDI.sendRealTime(MIDI_RT_STOP);
-            setDisplay(F("BPM"), F("CLK OFF"));
+            setOled(F("BPM"), F("CLK OFF"));
         }
         else
         {
             //MIDI.sendRealTime(MIDI_RT_START);
-            setDisplay(F("BPM"), F("CLK ON"));
+            setOled(F("BPM"), F("CLK ON"));
         }
         midiClockState = !midiClockState;
         STATE = WAIT;

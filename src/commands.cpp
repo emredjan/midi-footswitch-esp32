@@ -1,12 +1,12 @@
 #include <Arduino.h>
-#include <ShiftRegister74HC595.h>
 
 #include <commands.h>
 #include <displays.h>
 #include <midiclock.h>
+#include <globals.h>
 
 
-void callCommand(byte program, ShiftRegister74HC595<3> sr)
+void callCommand(byte program)
 {
 
     for (byte i = 0; i < NUM_LEDS; i++)
@@ -18,7 +18,7 @@ void callCommand(byte program, ShiftRegister74HC595<3> sr)
     }
 
     if (program != 7) // tap
-        msgFlicker(FLICKER_FAST, 5, getNumberToPrint(0, program), sr);
+        msgFlicker(FLICKER_FAST, 5, getNumberToPrint(0, program));
 
     switch (program)
     {
@@ -53,7 +53,7 @@ void callCommand(byte program, ShiftRegister74HC595<3> sr)
         byte displayPrint[3];
         for (int i = 0; i < 3; i++)
             displayPrint[i] = getNumberToPrint(0, program)[i];
-        sr.setAll(displayPrint);
+        sevenSeg.setAll(displayPrint);
     }
 }
 
