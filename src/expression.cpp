@@ -11,7 +11,7 @@ void setupExpression()
     analogSetPinAttenuation(EXPR_PINS[0], ADC_11db);
     // analogSetPinAttenuation(EXPR_PINS[1], ADC_11db);
 
-    expressionEnabled[0] = true;
+    // expressionEnabled[0] = true;
     // expressionEnabled[1] = false;
 }
 

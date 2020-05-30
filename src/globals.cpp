@@ -2,6 +2,11 @@
 
 #include <globals.h>
 
+
+
+U8G2_SH1106_128X64_NONAME_F_HW_I2C display(U8G2_R0, U8X8_PIN_NONE);
+
+
 /*** MIDI Object ***/
 
 MIDI_CREATE_INSTANCE(HardwareSerial, Serial2, MIDI);
@@ -17,6 +22,8 @@ byte expressionCC[] = {11, 12};
 byte expressionChannel[] = {1, 2};
 const byte EXPR_PINS[] = {32, 33};
 
+const byte expressionCCDefault[] = {7, 11};
+const byte expressionChannelDefault[] = {CH_IRIDIUM, CH_MODFACTOR};
 
 /*** Button Things ***/
 
@@ -92,8 +99,8 @@ const byte MAX_BANK = 5;
 
 /*** MIDI Clock Handling ***/
 
-unsigned long bpm = 120;
-unsigned long prevBpm = 120;
+volatile unsigned long bpm = 120;
+volatile unsigned long prevBpm = 120;
 unsigned long usPerTick = (unsigned long)(1e6 / (bpm * 24.0 / 60.0));
 unsigned long prevTime = 0UL;
 

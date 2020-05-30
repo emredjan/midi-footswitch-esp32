@@ -4,8 +4,8 @@
 #include <Arduino.h>
 #include <ShiftRegister74HC595.h>
 
-void setOled(const __FlashStringHelper *msg);
-void setOled(const __FlashStringHelper *msg1, const __FlashStringHelper *msg2);
+void setOled(const char *msg);
+void setOled(const char *msg1, const char *msg2);
 
 byte *getNumberToPrint(byte bank, byte program);
 byte *getNumberToPrint(unsigned int bpm_);

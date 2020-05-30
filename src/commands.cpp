@@ -60,13 +60,21 @@ void command_1()
 {
     if (!command_sent[1 - 1])
     {
-        MIDI.sendProgramChange(2, CH_MODFACTOR); // ModFactor Chorus
-        setOled(F("CHORS"), F("ON"));
+        MIDI.sendProgramChange(7, CH_MODFACTOR); // ModFactor Chorus
+        setOled("FLNGR", "ON");
+
+        expressionEnabled[0] = true;
+        expressionChannel[0] = CH_MODFACTOR;
+        expressionCC[0] = 11;
     }
     else
     {
         MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
-        setOled(F("CHORS"), F("OFF"));
+        setOled("FLNGR", "OFF");
+
+        expressionEnabled[0] = true;
+        expressionChannel[0] = expressionChannelDefault[0];
+        expressionCC[0] = expressionCCDefault[0];
     }
     command_sent[1 - 1] = !command_sent[1 - 1];
 }
@@ -76,12 +84,20 @@ void command_2()
     if (!command_sent[2 - 1])
     {
         MIDI.sendProgramChange(3, CH_MODFACTOR); // ModFactor Phaser
-        setOled(F("PHASR"), F("ON"));
+        setOled("PHASR", "ON");
+
+        expressionEnabled[0] = true;
+        expressionChannel[0] = CH_MODFACTOR;
+        expressionCC[0] = 11;
     }
     else
     {
         MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
-        setOled(F("PHASR"), F("OFF"));
+        setOled("PHASR", "OFF");
+
+        expressionEnabled[0] = true;
+        expressionChannel[0] = expressionChannelDefault[0];
+        expressionCC[0] = expressionCCDefault[0];
     }
     command_sent[2 - 1] = !command_sent[2 - 1];
 }
@@ -91,12 +107,20 @@ void command_3()
     if (!command_sent[3 - 1])
     {
         MIDI.sendProgramChange(11, CH_MODFACTOR); // ModFactor Rotary
-        setOled(F("ROTRY"), F("ON"));
+        setOled("ROTRY", "ON");
+
+        expressionEnabled[0] = true;
+        expressionChannel[0] = CH_MODFACTOR;
+        expressionCC[0] = 11;
     }
     else
     {
         MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
-        setOled(F("ROTRY"), F("OFF"));
+        setOled("ROTRY", "OFF");
+
+        expressionEnabled[0] = true;
+        expressionChannel[0] = expressionChannelDefault[0];
+        expressionCC[0] = expressionCCDefault[0];
     }
     command_sent[3 - 1] = !command_sent[3 - 1];
 }
@@ -106,12 +130,20 @@ void command_4()
     if (!command_sent[4 - 1])
     {
         MIDI.sendProgramChange(13, CH_MODFACTOR); // ModFactor Tremolo
-        setOled(F("TREM"), F("ON"));
+        setOled("TREM", "ON");
+
+        expressionEnabled[0] = true;
+        expressionChannel[0] = CH_MODFACTOR;
+        expressionCC[0] = 11;
     }
     else
     {
         MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
-        setOled(F("TREM"), F("OFF"));
+        setOled("TREM", "OFF");
+
+        expressionEnabled[0] = true;
+        expressionChannel[0] = expressionChannelDefault[0];
+        expressionCC[0] = expressionCCDefault[0];
     }
     command_sent[4 - 1] = !command_sent[4 - 1];
 }
@@ -121,12 +153,20 @@ void command_5()
     if (!command_sent[5 - 1])
     {
         MIDI.sendProgramChange(5, CH_MODFACTOR); // ModFactor Wah
-        setOled(F("WAH"), F("ON"));
+        setOled("WAH", "ON");
+
+        expressionEnabled[0] = true;
+        expressionChannel[0] = CH_MODFACTOR;
+        expressionCC[0] = 11;
     }
     else
     {
         MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
-        setOled(F("WAH"), F("OFF"));
+        setOled("WAH", "OFF");
+
+        expressionEnabled[0] = true;
+        expressionChannel[0] = expressionChannelDefault[0];
+        expressionCC[0] = expressionCCDefault[0];
     }
     command_sent[5 - 1] = !command_sent[5 - 1];
 }
@@ -135,13 +175,13 @@ void command_6()
 {
     if (!command_sent[6 - 1])
     {
-        MIDI.sendProgramChange(7, CH_MODFACTOR); // ModFactor Flanger
-        setOled(F("FLNGR"), F("ON"));
+        MIDI.sendProgramChange(2, CH_MODFACTOR); // ModFactor Flanger
+        setOled("CHORS", "ON");
     }
     else
     {
         MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
-        setOled(F("FLNGR"), F("OFF"));
+        setOled("CHORS", "OFF");
     }
     command_sent[6 - 1] = !command_sent[6 - 1];
 }
@@ -160,7 +200,7 @@ void command_7()
         sevenSeg.setAll(displayPrint);
     }
 
-    setOled(F("BPM"), F("CLK ON"));
+    setOled("BPM", "CLK ON");
 }
 
 void command_8()
@@ -168,12 +208,12 @@ void command_8()
     if (!command_sent[8 - 1])
     {
         MIDI.sendProgramChange(113, CH_SWITCHER); // Booster
-        setOled(F("BOOST"), F("ON"));
+        setOled("BOOST", "ON");
     }
     else
     {
         MIDI.sendProgramChange(103, CH_SWITCHER); // Booster
-        setOled(F("BOOST"), F("OFF"));
+        setOled("BOOST", "OFF");
     }
     command_sent[8 - 1] = !command_sent[8 - 1];
 }

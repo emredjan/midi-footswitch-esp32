@@ -197,7 +197,12 @@ void preset_1_1()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
-    setOled(F("CLEAN"), F("GENERIC"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("CLEAN", "GENERIC");
+
 }
 
 void preset_1_2()
@@ -212,7 +217,12 @@ void preset_1_2()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
-    setOled(F("CRNCH"), F("GENERIC"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("CRNCH", "GENERIC");
+
 }
 
 void preset_1_3()
@@ -227,7 +237,11 @@ void preset_1_3()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
-    setOled(F("DRIVE"), F("GENERIC"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("DRIVE", "GENERIC");
 }
 
 void preset_1_4()
@@ -242,7 +256,11 @@ void preset_1_4()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(1 - 1, CH_EQ);      // EQ Lead Boost
 
-    setOled(F("LEAD"), F("GENERIC"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("LEAD", "GENERIC");
 }
 
 void preset_2_1()
@@ -257,7 +275,11 @@ void preset_2_1()
     MIDI.sendProgramChange(2, CH_MODFACTOR); // ModFactor Chorus
     MIDI.sendProgramChange(5 - 1, CH_EQ);    // EQ Bypass
 
-    setOled(F("CLEAN"), F("LOW GAIN"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("CLEAN", "LOW GAIN");
 }
 
 void preset_2_2()
@@ -272,7 +294,11 @@ void preset_2_2()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
-    setOled(F("ACSTC"), F("LOW GAIN"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("ACSTC", "LOW GAIN");
 }
 
 void preset_2_3()
@@ -287,7 +313,11 @@ void preset_2_3()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
-    setOled(F("DRIVE"), F("LOW GAIN"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("DRIVE", "LOW GAIN");
 }
 
 void preset_2_4()
@@ -302,7 +332,11 @@ void preset_2_4()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(1 - 1, CH_EQ);      // EQ Lead Boost
 
-    setOled(F("LEAD"), F("LOW GAIN"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("LEAD", "LOW GAIN");
 }
 
 void preset_3_1()
@@ -317,7 +351,11 @@ void preset_3_1()
     MIDI.sendProgramChange(1, CH_MODFACTOR); // ModFactor Chorus (80s)
     MIDI.sendProgramChange(5 - 1, CH_EQ);    // EQ Bypass
 
-    setOled(F("CLEAN"), F("HI GAIN"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("CLEAN", "HI GAIN");
 }
 
 void preset_3_2()
@@ -332,7 +370,11 @@ void preset_3_2()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(2 - 1, CH_EQ);      // EQ TubeScreamer
 
-    setOled(F("DRV1"), F("HI GAIN"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("DRV1", "HI GAIN");
 }
 
 void preset_3_3()
@@ -347,7 +389,11 @@ void preset_3_3()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(2 - 1, CH_EQ);      // EQ TubeScreamer
 
-    setOled(F("DRV2"), F("HI GAIN"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("DRV2", "HI GAIN");
 }
 
 void preset_3_4()
@@ -362,7 +408,11 @@ void preset_3_4()
     MIDI.sendProgramChange(1, CH_MODFACTOR); // ModFactor Chorus (80s)
     MIDI.sendProgramChange(2 - 1, CH_EQ);    // EQ TubeScreamer
 
-    setOled(F("LEAD"), F("HI GAIN"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("LEAD", "HI GAIN");
 }
 
 void preset_4_1()
@@ -377,7 +427,11 @@ void preset_4_1()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
-    setOled(F("CLEAN"), F("FUNK/POP"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("CLEAN", "FUNK/POP");
 }
 
 void preset_4_2()
@@ -392,7 +446,11 @@ void preset_4_2()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
-    setOled(F("SQSHD"), F("FUNK/POP"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("SQSHD", "FUNK/POP");
 }
 
 void preset_4_3()
@@ -407,7 +465,11 @@ void preset_4_3()
     MIDI.sendProgramChange(9, CH_MODFACTOR); // ModFactor Auto Filter
     MIDI.sendProgramChange(5 - 1, CH_EQ);    // EQ Bypass
 
-    setOled(F("F WAH"), F("FUNK/POP"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = CH_MODFACTOR;
+    expressionCC[0] = 11;
+
+    setOled("F WAH", "FUNK/POP");
 }
 
 void preset_4_4()
@@ -422,7 +484,11 @@ void preset_4_4()
     MIDI.sendProgramChange(4, CH_MODFACTOR); // ModFactor Uni-Vibe
     MIDI.sendProgramChange(5 - 1, CH_EQ);    // EQ Bypass
 
-    setOled(F("PHASD"), F("FUNK/POP"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = CH_MODFACTOR;
+    expressionCC[0] = 11;
+
+    setOled("PHASD", "FUNK/POP");
 }
 
 void preset_5_1()
@@ -434,7 +500,11 @@ void preset_5_1()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
-    setOled(F("SWTCH"), F("ALL ON"));
+    expressionEnabled[0] = true;
+    expressionChannel[0] = expressionChannelDefault[0];
+    expressionCC[0] = expressionCCDefault[0];
+
+    setOled("SWTCH", "ALL ON");
 }
 
 void preset_5_2()
@@ -446,12 +516,14 @@ void preset_5_2()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
-    setOled(F("SWTCH"), F("ALL OFF"));
+    expressionEnabled[0] = false;
+
+    setOled("SWTCH", "ALL OFF");
 }
 
 void preset_5_3()
 {
-    setOled(F("EMPTY"), F(""));
+    setOled("EMPTY", "");
 }
 
 void preset_5_4()
@@ -465,7 +537,9 @@ void preset_5_4()
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
-    setOled(F("SWTCH"), F("RESET"));
+    expressionEnabled[0] = false;
+
+    setOled("SWTCH", "RESET");
 }
 
 // void preset_6_1()

@@ -41,6 +41,9 @@ void setup()
     for (byte i = 0; i < NUM_LEDS; i++)
         pinMode(LED_PINS[i], OUTPUT);
 
+    display.begin();
+    setOled("READY");
+
     Serial.begin(115200);
     MIDI.begin(MIDI_CHANNEL_OMNI);
 
@@ -187,14 +190,14 @@ void loop()
     case TO_LONG_1:
         if (!commandMode)
         {
-            setOled(F("CMD"));
+            setOled("CMD");
             callCommand(0);
             for (byte i = 0; i < 4; i++)
                 command_sent[i] = false;
         }
         else
         {
-            setOled(F("READY"));
+            setOled("READY");
             callPreset(bankNum, 0);
         }
 
@@ -274,14 +277,15 @@ void loop()
         if (midiClockState)
         {
             //MIDI.sendRealTime(MIDI_RT_STOP);
-            setOled(F("BPM"), F("CLK OFF"));
+            midiClockState = !midiClockState;
+            setOled("BPM", "CLK OFF");
         }
         else
         {
             //MIDI.sendRealTime(MIDI_RT_START);
-            setOled(F("BPM"), F("CLK ON"));
+            midiClockState = !midiClockState;
+            setOled("BPM", "CLK ON");
         }
-        midiClockState = !midiClockState;
         STATE = WAIT;
         break;
     }

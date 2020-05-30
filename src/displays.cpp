@@ -4,18 +4,45 @@
 
 #include <globals.h>
 
-
-void setOled(const __FlashStringHelper *msg)
+void drawMidiClock()
 {
-
+    // MIDI Clock Icon
+    display.setFont(u8g2_font_open_iconic_app_1x_t);
+    display.drawStr(106, 10, "H");
+    display.setFont(u8g2_font_open_iconic_play_1x_t);
+    if (midiClockState)
+        display.drawStr(116, 10, "E"); // Play
+    else
+        display.drawStr(116, 10, "D"); // Pause
 }
 
-void setOled(const __FlashStringHelper *msg1, const __FlashStringHelper *msg2)
-{
 
+void setOled(const char *msg)
+{
+    display.clearBuffer();
+
+    display.setFont(u8g2_font_inb27_mf);
+    display.drawStr(5, 48, msg);
+
+    drawMidiClock();
+
+    display.sendBuffer();
 }
 
+void setOled(const char *msg1, const char *msg2)
+{
+    display.clearBuffer();
 
+    display.setFont(u8g2_font_inb24_mf);
+    display.drawStr(5, 38, msg1);
+
+    display.setFont(u8g2_font_t0_22_me);
+    display.drawStr(5, 60, msg2);
+
+    drawMidiClock();
+
+    display.sendBuffer();
+}
 
 byte *getNumberToPrint(byte bank, byte program)
 {
@@ -38,7 +65,6 @@ byte *getNumberToPrint(byte bank, byte program)
     return numberToPrint;
 }
 
-
 byte *getNumberToPrint(unsigned int bpm_)
 {
 
@@ -53,7 +79,6 @@ byte *getNumberToPrint(unsigned int bpm_)
     numberToPrint[2] = numberB[bpm_ % 10];
 
     return numberToPrint;
-
 }
 
 void msgFlicker(long flickerTime, int flickerCount, byte *message)
