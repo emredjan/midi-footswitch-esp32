@@ -57,7 +57,6 @@ void handleMidiClock()
     }
 }
 
-//TODO: Tempo leds
 void handleTempoLed()
 {
     if (micros() - prevBlink >= usPerTick * 12)
