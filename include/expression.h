@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
-void handleExpression(byte controller, byte channel);
+void setupExpression();
+void handleExpression1(byte controller, byte channel);
+// void handleExpression2(byte controller, byte channel);
 
 #endif
