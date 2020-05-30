@@ -12,5 +12,4 @@ byte *getNumberToPrint(unsigned int bpm_);
 
 void msgFlicker(long flickerTime, int flickerCount, byte *message);
 
-
 #endif

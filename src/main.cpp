@@ -7,14 +7,36 @@
 #include <midiclock.h>
 #include <expression.h>
 
+TaskHandle_t clockTask;
+
+void clockTaskCode(void *pvParameters)
+{
+    for (;;)
+    {
+        /*** Handle MIDI Clock ***/
+
+        if (tapCounter > 0 && micros() - lastTap > currentTimer[0] * 2)
+            tapCounter = 0;
+
+        if (midiClockState)
+        {
+            handleMidiClock();
+            handleTempoLed();
+            vTaskDelay(1);
+        }
+        else
+        {
+            vTaskDelay(10);
+        }
+    }
+}
 
 void setup()
 {
+    // Create the task on core 0 for MIDI Clock handling
+    xTaskCreatePinnedToCore(clockTaskCode, "clockTask", 1000, NULL, 10, &clockTask, 0);
 
-    analogReadResolution(12);
-    analogSetPinAttenuation(EXPR_PIN, ADC_11db);
-
-    expressionEnabled = true;
+    setupExpression();
 
     for (byte i = 0; i < NUM_LEDS; i++)
         pinMode(LED_PINS[i], OUTPUT);
@@ -33,25 +55,18 @@ void setup()
     // Start by displaying a dash
     byte displayPrint[3] = {B10111111, B10111111, B10111111};
     sevenSeg.setAll(displayPrint);
-
 }
 
 void loop()
 {
 
-    if (expressionEnabled)
-        handleExpression(expressionCC, expressionChannel);
+    /** Handle Expression Pedals **/
 
-    /*** Handle MIDI Clock ***/
+    if (expressionEnabled[0])
+        handleExpression1(expressionCC[0], expressionChannel[0]);
 
-    if (tapCounter > 0 && micros() - lastTap > currentTimer[0] * 2)
-        tapCounter = 0;
-
-    if (midiClockState)
-    {
-        handleMidiClock();
-        handleTempoLed();
-    }
+    // if (expressionEnabled[1])
+    //     handleExpression2(expressionCC[1], expressionChannel[1]);
 
     /*** Handle Buttons ***/
 
@@ -164,8 +179,8 @@ void loop()
         break;
 
     case SHORT_7:
-        // callCommand(7);
-        tapTempo();
+        callCommand(7);
+        // tapTempo();
         STATE = WAIT;
         break;
 

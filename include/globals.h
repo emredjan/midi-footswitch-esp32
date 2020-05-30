@@ -16,17 +16,18 @@ extern midi::MidiInterface<midi::SerialMIDI<HardwareSerial>> MIDI;
 
 /*** Expression ***/
 
-extern SingleEMAFilter<int> signalFilter;
+extern SingleEMAFilter<int> signalFilter1;
+// extern SingleEMAFilter<int> signalFilter2;
 
-extern bool expressionEnabled;
-extern byte expressionCC;
-extern byte expressionChannel;
-extern const byte EXPR_PIN;
+extern bool expressionEnabled[];
+extern byte expressionCC[];
+extern byte expressionChannel[];
+extern const byte EXPR_PINS[];
 
 
 /*** Button Things ***/
 
-extern const byte BUTTON_PINS[] ;
+extern const byte BUTTON_PINS[];
 
 extern const unsigned int LONG_PRESS;
 

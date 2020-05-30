@@ -9,12 +9,13 @@ MIDI_CREATE_INSTANCE(HardwareSerial, Serial2, MIDI);
 
 /*** Expression ***/
 
-SingleEMAFilter<int> signalFilter(0.1);
+SingleEMAFilter<int> signalFilter1(0.1);
+// SingleEMAFilter<int> signalFilter2(0.1);
 
-bool expressionEnabled = false;
-byte expressionCC = 11;
-byte expressionChannel = 1;
-const byte EXPR_PIN = 32;
+bool expressionEnabled[] = {false, false};
+byte expressionCC[] = {11, 12};
+byte expressionChannel[] = {1, 2};
+const byte EXPR_PINS[] = {32, 33};
 
 
 /*** Button Things ***/

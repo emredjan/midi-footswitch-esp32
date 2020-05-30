@@ -36,20 +36,10 @@ void tapTempo()
 
         usPerTap = totalTimer / numAverage;
         bpm = (unsigned long)60e6 / usPerTap;
-        bpm = _min(_max(bpm, MIN_BPM), MAX_BPM);
+        bpm = _min(_max(bpm, MIN_BPM), MAX_BPM); // limit BPM Range
         tapCounter--;
     }
 
-    byte displayPrint[3];
-
-    if (bpm != prevBpm)
-    {
-        for (int i = 0; i < 3; i++)
-            displayPrint[i] = getNumberToPrint(bpm)[i];
-        sevenSeg.setAll(displayPrint);
-    }
-
-    setOled(F("BPM"), F("CLK ON"));
 }
 
 void handleMidiClock()
