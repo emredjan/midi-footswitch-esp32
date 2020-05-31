@@ -38,7 +38,7 @@ Button button7(BUTTON_PINS[6], 25, false, true);
 /** display related **/
 
 const byte LED_PINS[] = {4, 0, 2, 15};
-const byte NUM_LEDS = 4;
+const size_t NUM_LEDS = sizeof(LED_PINS) / sizeof(LED_PINS[0]);
 
 const int FLICKER_NONE = 300;
 const int FLICKER_SLOW = 100;
@@ -77,6 +77,11 @@ const byte CH_MODFACTOR = 1;
 const byte CH_IRIDIUM = 2;
 const byte CH_EQ = 4;
 const byte CH_SWITCHER = 16;
+
+const byte SW_RELAYS_USED[] = {1, 2, 3, 6};
+const byte SW_RELAYS_UNUSED[] = {4, 5, 7, 8};
+const size_t NUM_RELAYS_USED = sizeof(SW_RELAYS_USED) / sizeof(SW_RELAYS_USED[0]);
+const size_t NUM_RELAYS_UNUSED = sizeof(SW_RELAYS_UNUSED) / sizeof(SW_RELAYS_UNUSED[0]);
 
 
 /*** Shift Register Things ***/

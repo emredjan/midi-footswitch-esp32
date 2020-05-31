@@ -47,7 +47,7 @@ extern Button button7;
 /** display related **/
 
 extern const byte LED_PINS[];
-extern const byte NUM_LEDS;
+extern const size_t NUM_LEDS;
 
 extern const int FLICKER_NONE;
 extern const int FLICKER_SLOW;
@@ -71,6 +71,10 @@ extern const byte CH_IRIDIUM;
 extern const byte CH_EQ;
 extern const byte CH_SWITCHER ;
 
+extern const byte SW_RELAYS_USED[];
+extern const byte SW_RELAYS_UNUSED[];
+extern const size_t NUM_RELAYS_USED;
+extern const size_t NUM_RELAYS_UNUSED;
 
 /*** Shift Register Things ***/
 

@@ -531,13 +531,14 @@ void preset_5_4()
     MIDI.sendProgramChange(0, CH_SWITCHER); // Switcher Reset
     delay(1000);
     // Disable Unused Switcher Relays
-    // for (byte i = 0; i < NUM_RELAYS_UNUSED; i++)
-    //     MIDI.sendProgramChange(100 + SW_RELAYS_UNUSED[i], CH_SWITCHER);
+    for (byte i = 0; i < NUM_RELAYS_UNUSED; i++)
+        MIDI.sendProgramChange(100 + SW_RELAYS_UNUSED[i], CH_SWITCHER);
 
     MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
     MIDI.sendProgramChange(5 - 1, CH_EQ);      // EQ Bypass
 
     expressionEnabled[0] = false;
+    midiClockState = false;
 
     setOled("SWTCH", "RESET");
 }

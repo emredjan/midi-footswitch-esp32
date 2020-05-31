@@ -55,6 +55,10 @@ void setup()
     button6.begin();
     button7.begin();
 
+    // Disable Unused Switcher Relays
+    for (byte i = 0; i < NUM_RELAYS_UNUSED; i++)
+        MIDI.sendProgramChange(100 + SW_RELAYS_UNUSED[i], CH_SWITCHER);
+
     // Start by displaying a dash
     byte displayPrint[3] = {B10111111, B10111111, B10111111};
     sevenSeg.setAll(displayPrint);
@@ -183,7 +187,6 @@ void loop()
 
     case SHORT_7:
         callCommand(7);
-        // tapTempo();
         STATE = WAIT;
         break;
 
@@ -276,13 +279,13 @@ void loop()
 
         if (midiClockState)
         {
-            //MIDI.sendRealTime(MIDI_RT_STOP);
+            MIDI.sendRealTime(midi::MidiType::Stop);
             midiClockState = !midiClockState;
             setOled("BPM", "CLK OFF");
         }
         else
         {
-            //MIDI.sendRealTime(MIDI_RT_START);
+            MIDI.sendRealTime(midi::MidiType::Start);
             midiClockState = !midiClockState;
             setOled("BPM", "CLK ON");
         }

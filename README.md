@@ -29,4 +29,4 @@
 - **[Arduino Button Library](https://github.com/JChristensen/JC_Button)**: Switch handling
 - **[ShiftRegister 74HC595 Arduino Library](https://github.com/Simsso/ShiftRegister74HC595)**: For driving the 7-segment LED display
 - **[Arduino Single EMA Filter](https://github.com/luisllamasbinaburo/Arduino-SingleEmaFilter)**: Filtering voltage noise from analog inputs (for expression pedals)
-- **TODO: Add OLED library**
+- **[U8G2](https://github.com/olikraus/u8g2)**: Driving the OLED display
