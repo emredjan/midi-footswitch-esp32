@@ -24,16 +24,29 @@ const byte expressionChannelDefault[] = {CH_IRIDIUM, CH_MODFACTOR};
 /*** Button Things ***/
 
 const byte BUTTON_PINS[] = {36, 39, 34, 35, 25, 26, 27};
+const byte NUM_BUTTONS = sizeof(BUTTON_PINS) / sizeof(BUTTON_PINS[0]);
+const byte NUM_BUILTIN_BUTTONS = 4;
 
-const unsigned int LONG_PRESS = 600;
+const unsigned int DEBOUNCE_DELAY = 25;
+const unsigned int CLICK_DELAY = 100;
+const unsigned int LONG_PRESS_DELAY = 600;
+const unsigned int REPEAT_PRESS_DELAY = 1000;
+const unsigned int REPEAT_PRESS_INTERVAL = 200;
 
-Button button1(BUTTON_PINS[0], 25, false, true);
-Button button2(BUTTON_PINS[1], 25, false, true);
-Button button3(BUTTON_PINS[2], 25, false, true);
-Button button4(BUTTON_PINS[3], 25, false, true);
-Button button5(BUTTON_PINS[4], 25, false, true);
-Button button6(BUTTON_PINS[5], 25, false, true);
-Button button7(BUTTON_PINS[6], 25, false, true);
+AceButton buttons[NUM_BUTTONS];
+ButtonConfig buttonConfigs[NUM_BUTTONS];
+
+byte bankNum = 1;
+byte newBankNum = 0;
+bool commandMode = false;
+
+// Button button1(BUTTON_PINS[0], 25, false, true);
+// Button button2(BUTTON_PINS[1], 25, false, true);
+// Button button3(BUTTON_PINS[2], 25, false, true);
+// Button button4(BUTTON_PINS[3], 25, false, true);
+// Button button5(BUTTON_PINS[4], 25, false, true);
+// Button button6(BUTTON_PINS[5], 25, false, true);
+// Button button7(BUTTON_PINS[6], 25, false, true);
 
 /** display related **/
 

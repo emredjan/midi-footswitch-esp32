@@ -3,12 +3,13 @@
 
 #include <Arduino.h>
 
-#include <JC_Button.h>
 #include <ShiftRegister74HC595.h>
 #include <MIDI.h>
 #include <SingleEMAFilterLib.h>
 #include <U8g2lib.h>
 #include <Wire.h>
+#include <AceButton.h>
+using namespace ace_button;
 
 
 /*** MIDI Object ***/
@@ -32,16 +33,29 @@ extern const byte expressionChannelDefault[];
 /*** Button Things ***/
 
 extern const byte BUTTON_PINS[];
+extern const byte NUM_BUTTONS;
+extern const byte NUM_BUILTIN_BUTTONS;
 
-extern const unsigned int LONG_PRESS;
+extern const unsigned int DEBOUNCE_DELAY;
+extern const unsigned int CLICK_DELAY;
+extern const unsigned int LONG_PRESS_DELAY;
+extern const unsigned int REPEAT_PRESS_DELAY;
+extern const unsigned int REPEAT_PRESS_INTERVAL;
 
-extern Button button1;
-extern Button button2;
-extern Button button3;
-extern Button button4;
-extern Button button5;
-extern Button button6;
-extern Button button7;
+extern AceButton buttons[];
+extern ButtonConfig buttonConfigs[];
+
+extern byte bankNum;
+extern byte newBankNum;
+extern bool commandMode;
+
+// extern Button button1;
+// extern Button button2;
+// extern Button button3;
+// extern Button button4;
+// extern Button button5;
+// extern Button button6;
+// extern Button button7;
 
 
 /** display related **/

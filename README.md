@@ -17,6 +17,9 @@
 
 ## Todo List
 
+- [ ] Onboard preset editing
+- [ ] Move presets into NVS with Preferences Library
+- [ ] Set repeat press events for bank change buttons
 - [ ] OTA update
 - [ ] Web based config
 - [ ] OLED improvements, more information
@@ -26,7 +29,7 @@
 ## 3rd Party Libraries
 
 - **[Arduino MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library)**: General MIDI functionality
-- **[Arduino Button Library](https://github.com/JChristensen/JC_Button)**: Switch handling
+- **[AceButton](https://github.com/bxparks/AceButton)**: Switch handling
 - **[ShiftRegister 74HC595 Arduino Library](https://github.com/Simsso/ShiftRegister74HC595)**: For driving the 7-segment LED display
 - **[Arduino Single EMA Filter](https://github.com/luisllamasbinaburo/Arduino-SingleEmaFilter)**: Filtering voltage noise from analog inputs (for expression pedals)
 - **[U8G2](https://github.com/olikraus/u8g2)**: Driving the OLED display
