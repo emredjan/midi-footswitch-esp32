@@ -18,12 +18,12 @@
 ## Todo List
 
 - [ ] Onboard preset editing
-- [ ] Add a rotary encode for additional functions (may need pcb change)
+- [ ] Add a rotary encoder for additional functions (may need pcb change)
 - [ ] Move presets into NVS with Preferences Library
-- [ ] Set repeat press events for bank change buttons
+- [ ] Set `repeat press` events for bank change buttons
 - [ ] OTA update
 - [ ] Web based config
-- [ ] OLED improvements, more information
+- [ ] OLED improvements, show more information on screen
 - [ ] Dual core optimizations (Currently MIDI Clock handling runs on separate core, but hacky)
 - [ ] Move LEDS / Switches to a shift register (not a priority, ESP32 has enough GPIO)
 
