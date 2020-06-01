@@ -18,6 +18,7 @@
 ## Todo List
 
 - [ ] Onboard preset editing
+- [ ] Add a rotary encode for additional functions (may need pcb change)
 - [ ] Move presets into NVS with Preferences Library
 - [ ] Set repeat press events for bank change buttons
 - [ ] OTA update
