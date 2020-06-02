@@ -27,11 +27,11 @@ const byte BUTTON_PINS[] = {36, 39, 34, 35, 25, 26, 27};
 const byte NUM_BUTTONS = sizeof(BUTTON_PINS) / sizeof(BUTTON_PINS[0]);
 const byte NUM_BUILTIN_BUTTONS = 4;
 
-const unsigned int DEBOUNCE_DELAY = 25;
-const unsigned int CLICK_DELAY = 100;
+const unsigned int DEBOUNCE_DELAY = 18;
+const unsigned int CLICK_DELAY = 35;
 const unsigned int LONG_PRESS_DELAY = 600;
-const unsigned int REPEAT_PRESS_DELAY = 1000;
-const unsigned int REPEAT_PRESS_INTERVAL = 200;
+const unsigned int REPEAT_PRESS_DELAY = 600;
+const unsigned int REPEAT_PRESS_INTERVAL = 500;
 
 AceButton buttons[NUM_BUTTONS];
 ButtonConfig buttonConfigs[NUM_BUTTONS];
@@ -95,6 +95,14 @@ const byte SW_RELAYS_USED[] = {1, 2, 3, 6};
 const byte SW_RELAYS_UNUSED[] = {4, 5, 7, 8};
 const size_t NUM_RELAYS_USED = sizeof(SW_RELAYS_USED) / sizeof(SW_RELAYS_USED[0]);
 const size_t NUM_RELAYS_UNUSED = sizeof(SW_RELAYS_UNUSED) / sizeof(SW_RELAYS_UNUSED[0]);
+
+const char * BANK_NAMES[] = {
+    "GENERIC",
+    "LOW GAIN",
+    "HI GAIN",
+    "FUNK/POP",
+    "UTILITY"
+};
 
 
 /*** Shift Register Things ***/

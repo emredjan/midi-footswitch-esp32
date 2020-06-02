@@ -90,6 +90,9 @@ extern const byte SW_RELAYS_UNUSED[];
 extern const size_t NUM_RELAYS_USED;
 extern const size_t NUM_RELAYS_UNUSED;
 
+extern const char * BANK_NAMES[];
+
+
 /*** Shift Register Things ***/
 
 extern const byte SR_NUM_REGISTERS;

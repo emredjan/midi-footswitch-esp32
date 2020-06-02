@@ -200,7 +200,7 @@ void command_7()
         sevenSeg.setAll(displayPrint);
     }
 
-    setOled("BPM", "CLK ON");
+    setOled("BPM", "CLOCK ON");
 }
 
 void command_8()

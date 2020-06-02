@@ -16,6 +16,22 @@ void callPreset(byte bank, byte program)
         displayPrint[i] = getNumberToPrint(bank, program)[i];
     sevenSeg.setAll(displayPrint);
 
+    if (program == 0 && bank >= 1 && bank <= 5)
+    {
+        String bankMsg = "BNK ";
+        String bankNum_ = String(bank);
+        bankMsg += bankNum_;
+        setOled(bankMsg.c_str(), BANK_NAMES[bank - 1]);
+        // Serial.print("bankNum: ");
+        // Serial.print(bankNum);
+        // Serial.print(" / newBankNum: ");
+        // Serial.print(newBankNum);
+        // Serial.print(" / bank: ");
+        // Serial.println(bank);
+
+    }
+
+
     for (byte i = 0; i < NUM_LEDS; i++)
     {
         if ((i == program - 1) && program != 0)
@@ -201,7 +217,7 @@ void preset_1_1()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("CLEAN", "GENERIC");
+    setOled("CLEAN", BANK_NAMES[0]);
 
 }
 
@@ -221,7 +237,7 @@ void preset_1_2()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("CRNCH", "GENERIC");
+    setOled("CRNCH", BANK_NAMES[0]);
 
 }
 
@@ -241,7 +257,7 @@ void preset_1_3()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("DRIVE", "GENERIC");
+    setOled("DRIVE", BANK_NAMES[0]);
 }
 
 void preset_1_4()
@@ -260,7 +276,7 @@ void preset_1_4()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("LEAD", "GENERIC");
+    setOled("LEAD", BANK_NAMES[0]);
 }
 
 void preset_2_1()
@@ -279,7 +295,7 @@ void preset_2_1()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("CLEAN", "LOW GAIN");
+    setOled("CLEAN", BANK_NAMES[1]);
 }
 
 void preset_2_2()
@@ -298,7 +314,7 @@ void preset_2_2()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("ACSTC", "LOW GAIN");
+    setOled("ACSTC", BANK_NAMES[1]);
 }
 
 void preset_2_3()
@@ -317,7 +333,7 @@ void preset_2_3()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("DRIVE", "LOW GAIN");
+    setOled("DRIVE", BANK_NAMES[1]);
 }
 
 void preset_2_4()
@@ -336,7 +352,7 @@ void preset_2_4()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("LEAD", "LOW GAIN");
+    setOled("LEAD", BANK_NAMES[1]);
 }
 
 void preset_3_1()
@@ -355,7 +371,7 @@ void preset_3_1()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("CLEAN", "HI GAIN");
+    setOled("CLEAN", BANK_NAMES[2]);
 }
 
 void preset_3_2()
@@ -374,7 +390,7 @@ void preset_3_2()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("DRV1", "HI GAIN");
+    setOled("DRV1", BANK_NAMES[2]);
 }
 
 void preset_3_3()
@@ -393,7 +409,7 @@ void preset_3_3()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("DRV2", "HI GAIN");
+    setOled("DRV2", BANK_NAMES[2]);
 }
 
 void preset_3_4()
@@ -412,7 +428,7 @@ void preset_3_4()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("LEAD", "HI GAIN");
+    setOled("LEAD", BANK_NAMES[2]);
 }
 
 void preset_4_1()
@@ -431,7 +447,7 @@ void preset_4_1()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("CLEAN", "FUNK/POP");
+    setOled("CLEAN", BANK_NAMES[3]);
 }
 
 void preset_4_2()
@@ -450,7 +466,7 @@ void preset_4_2()
     expressionChannel[0] = expressionChannelDefault[0];
     expressionCC[0] = expressionCCDefault[0];
 
-    setOled("SQSHD", "FUNK/POP");
+    setOled("SQSHD", BANK_NAMES[3]);
 }
 
 void preset_4_3()
@@ -469,7 +485,7 @@ void preset_4_3()
     expressionChannel[0] = CH_MODFACTOR;
     expressionCC[0] = 11;
 
-    setOled("F WAH", "FUNK/POP");
+    setOled("F WAH", BANK_NAMES[3]);
 }
 
 void preset_4_4()
@@ -488,7 +504,7 @@ void preset_4_4()
     expressionChannel[0] = CH_MODFACTOR;
     expressionCC[0] = 11;
 
-    setOled("PHASD", "FUNK/POP");
+    setOled("PHASD", BANK_NAMES[3]);
 }
 
 void preset_5_1()
