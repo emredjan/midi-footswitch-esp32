@@ -29,8 +29,8 @@ const byte NUM_BUILTIN_BUTTONS = 4;
 
 const unsigned int DEBOUNCE_DELAY = 18;
 const unsigned int CLICK_DELAY = 35;
-const unsigned int LONG_PRESS_DELAY = 600;
-const unsigned int REPEAT_PRESS_DELAY = 600;
+const unsigned int LONG_PRESS_DELAY = 700;
+const unsigned int REPEAT_PRESS_DELAY = 700;
 const unsigned int REPEAT_PRESS_INTERVAL = 500;
 
 AceButton buttons[NUM_BUTTONS];
@@ -40,13 +40,6 @@ byte bankNum = 1;
 byte newBankNum = 0;
 bool commandMode = false;
 
-// Button button1(BUTTON_PINS[0], 25, false, true);
-// Button button2(BUTTON_PINS[1], 25, false, true);
-// Button button3(BUTTON_PINS[2], 25, false, true);
-// Button button4(BUTTON_PINS[3], 25, false, true);
-// Button button5(BUTTON_PINS[4], 25, false, true);
-// Button button6(BUTTON_PINS[5], 25, false, true);
-// Button button7(BUTTON_PINS[6], 25, false, true);
 
 /** display related **/
 

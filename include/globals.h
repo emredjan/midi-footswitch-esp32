@@ -49,14 +49,6 @@ extern byte bankNum;
 extern byte newBankNum;
 extern bool commandMode;
 
-// extern Button button1;
-// extern Button button2;
-// extern Button button3;
-// extern Button button4;
-// extern Button button5;
-// extern Button button6;
-// extern Button button7;
-
 
 /** display related **/
 

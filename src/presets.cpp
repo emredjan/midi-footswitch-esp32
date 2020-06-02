@@ -22,13 +22,6 @@ void callPreset(byte bank, byte program)
         String bankNum_ = String(bank);
         bankMsg += bankNum_;
         setOled(bankMsg.c_str(), BANK_NAMES[bank - 1]);
-        // Serial.print("bankNum: ");
-        // Serial.print(bankNum);
-        // Serial.print(" / newBankNum: ");
-        // Serial.print(newBankNum);
-        // Serial.print(" / bank: ");
-        // Serial.println(bank);
-
     }
 
 
