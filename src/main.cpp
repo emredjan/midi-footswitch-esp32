@@ -10,28 +10,7 @@
 
 TaskHandle_t clockTask;
 
-void clockTaskCode(void *pvParameters)
-{
-    for (;;)
-    {
-        /*** Handle MIDI Clock ***/
-
-        if (tapCounter > 0 && micros() - lastTap > currentTimer[0] * 2)
-            tapCounter = 0;
-
-        if (midiClockState)
-        {
-            handleMidiClock();
-            handleTempoLed();
-            vTaskDelay(1);
-        }
-        else
-        {
-            vTaskDelay(10);
-        }
-    }
-}
-
+void clockTaskCode(void *pvParameters);
 
 
 void setup()
@@ -75,4 +54,26 @@ void loop()
     // if (expressionEnabled[1])
     //     handleExpression2(expressionCC[1], expressionChannel[1]);
 
+}
+
+void clockTaskCode(void *pvParameters)
+{
+    for (;;)
+    {
+        /*** Handle MIDI Clock ***/
+
+        if (tapCounter > 0 && micros() - lastTap > currentTimer[0] * 2)
+            tapCounter = 0;
+
+        if (midiClockState)
+        {
+            handleMidiClock();
+            handleTempoLed();
+            vTaskDelay(1);
+        }
+        else
+        {
+            vTaskDelay(10);
+        }
+    }
 }
