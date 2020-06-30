@@ -23,7 +23,7 @@ const byte expressionChannelDefault[] = {CH_IRIDIUM, CH_MODFACTOR};
 
 /*** Button Things ***/
 
-const byte BUTTON_PINS[] = {36, 39, 34, 35, 25, 26, 27};
+const byte BUTTON_PINS[] = {36, 39, 34, 35, 25, 26, 27, 13};
 const byte NUM_BUTTONS = sizeof(BUTTON_PINS) / sizeof(BUTTON_PINS[0]);
 const byte NUM_BUILTIN_BUTTONS = 4;
 
@@ -68,7 +68,8 @@ U8G2_SSD1306_128X64_NONAME_F_HW_I2C display(U8G2_R0, U8X8_PIN_NONE);
 
 /** preset & command related **/
 
-bool command_sent[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+bool commandSent[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // to make it easy from 1
+bool commandSentLong[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // to make it easy from 1
 
 /*
     Channel  1: Eventide ModFactor

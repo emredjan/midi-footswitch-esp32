@@ -70,7 +70,8 @@ extern U8G2_SSD1306_128X64_NONAME_F_HW_I2C display;
 
 /** preset & command related **/
 
-extern bool command_sent[8];
+extern bool commandSent[9];
+extern bool commandSentLong[9];
 
 extern const byte CH_MODFACTOR;
 extern const byte CH_IRIDIUM;

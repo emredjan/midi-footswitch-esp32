@@ -44,7 +44,7 @@ void setOled(const char *msg1, const char *msg2)
     display.sendBuffer();
 }
 
-byte *getNumberToPrint(byte bank, byte program)
+byte *getNumberToPrint(byte bank, byte program, bool longPress)
 {
     static byte numberToPrint[3];
 
@@ -53,8 +53,10 @@ byte *getNumberToPrint(byte bank, byte program)
     else
         numberToPrint[0] = numberB[bank];
 
-    // Print a dash in the middle
-    numberToPrint[1] = B10111111;
+    if (longPress)
+        numberToPrint[1] = B11000111; // Print a "L in the middle
+    else
+        numberToPrint[1] = B10111111; // Print a dash in the middle
 
     if (program == 0)
         // Print a dash at the end if just a bank change command
@@ -64,6 +66,7 @@ byte *getNumberToPrint(byte bank, byte program)
 
     return numberToPrint;
 }
+
 
 byte *getNumberToPrint(unsigned int bpm_)
 {

@@ -9,11 +9,11 @@
 void callPreset(byte bank, byte program)
 {
 
-    msgFlicker(FLICKER_FAST, 5, getNumberToPrint(bank, program));
+    msgFlicker(FLICKER_FAST, 5, getNumberToPrint(bank, program, 0));
 
     byte displayPrint[3];
     for (int i = 0; i < 3; i++)
-        displayPrint[i] = getNumberToPrint(bank, program)[i];
+        displayPrint[i] = getNumberToPrint(bank, program, 0)[i];
     sevenSeg.setAll(displayPrint);
 
     if (program == 0 && bank >= 1 && bank <= 5)
@@ -190,8 +190,11 @@ void callPreset(byte bank, byte program)
         //     break;
     }
 
-    for (byte i = 0; i < 8; i++)
-        command_sent[i] = false;
+    for (byte i = 1; i < NUM_BUTTONS + 1; i++)
+    {
+        commandSent[i] = false;
+        commandSentLong[i] = false;
+    }
 }
 
 void preset_1_1()

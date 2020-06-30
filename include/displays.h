@@ -7,7 +7,7 @@
 void setOled(const char *msg);
 void setOled(const char *msg1, const char *msg2);
 
-byte *getNumberToPrint(byte bank, byte program);
+byte *getNumberToPrint(byte bank, byte program, bool longPress);
 byte *getNumberToPrint(unsigned int bpm_);
 
 void msgFlicker(long flickerTime, int flickerCount, byte *message);

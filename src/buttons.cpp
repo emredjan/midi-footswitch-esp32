@@ -17,13 +17,13 @@ void setupButtons()
         buttonConfigs[i].setFeature(ButtonConfig::kFeatureSuppressAfterClick);
         buttonConfigs[i].setClickDelay(CLICK_DELAY);
 
-        // No Long Click for buttons 5 & 6
-        if (i != 4 && i != 5)
-        {
-            buttonConfigs[i].setFeature(ButtonConfig::kFeatureLongPress);
-            buttonConfigs[i].setFeature(ButtonConfig::kFeatureSuppressAfterLongPress);
-            buttonConfigs[i].setLongPressDelay(LONG_PRESS_DELAY);
-        }
+        // DISABLED No Long Click for buttons 5 & 6
+        // if (i != 4 && i != 5)
+        // {
+        buttonConfigs[i].setFeature(ButtonConfig::kFeatureLongPress);
+        buttonConfigs[i].setFeature(ButtonConfig::kFeatureSuppressAfterLongPress);
+        buttonConfigs[i].setLongPressDelay(LONG_PRESS_DELAY);
+        // }
 
         // Add repeat press for bank change buttons (3 & 4)
         if (i == 2 || i == 3)
@@ -52,7 +52,7 @@ void handleBuiltinButtons(AceButton *button, byte eventType, byte buttonState)
     if (eventType == AceButton::kEventReleased)
     {
         if (commandMode)
-            callCommand(buttonNumber);
+            callCommand(buttonNumber, 0);
         else
             callPreset(bankNum, buttonNumber);
     }
@@ -66,9 +66,12 @@ void handleBuiltinButtons(AceButton *button, byte eventType, byte buttonState)
                 if (!commandMode)
                 {
                     setOled("CMD");
-                    callCommand(0);
-                    for (byte i = 0; i < NUM_BUILTIN_BUTTONS; i++)
-                        command_sent[i] = false;
+                    callCommand(0, 0);
+                    for (byte i = 1; i < NUM_BUILTIN_BUTTONS + 1; i++)
+                    {
+                        commandSent[i] = false;
+                        commandSentLong[i] = false;
+                    }
                 }
                 else
                 {
@@ -81,13 +84,13 @@ void handleBuiltinButtons(AceButton *button, byte eventType, byte buttonState)
         case 2:
             if (eventType == AceButton::kEventLongPressed)
             {
-                callCommand(0);
-                callCommand(8);
+                callCommand(0, 0);
+                callCommand(2, 1);
             }
             break;
         case 3:
             if (commandMode && eventType == AceButton::kEventLongPressed)
-                callCommand(3);
+                callCommand(3, 0);
             else if (!commandMode && eventType == AceButton::kEventRepeatPressed)
             {
                 newBankNum = _min(bankNum + 1, MAX_BANK);
@@ -97,7 +100,7 @@ void handleBuiltinButtons(AceButton *button, byte eventType, byte buttonState)
             break;
         case 4:
             if (commandMode && eventType == AceButton::kEventLongPressed)
-                callCommand(4);
+                callCommand(4, 0);
             else if (!commandMode && eventType == AceButton::kEventRepeatPressed)
             {
                 newBankNum = _max(bankNum - 1, MIN_BANK);
@@ -107,7 +110,6 @@ void handleBuiltinButtons(AceButton *button, byte eventType, byte buttonState)
             break;
         }
     }
-
 }
 
 void handleExternalButtons(AceButton *button, byte eventType, byte buttonState)
@@ -118,31 +120,10 @@ void handleExternalButtons(AceButton *button, byte eventType, byte buttonState)
     switch (eventType)
     {
     case AceButton::kEventReleased:
-        callCommand(buttonNumber);
+        callCommand(buttonNumber, 0);
         break;
     case AceButton::kEventLongPressed:
-        switch (buttonNumber)
-        {
-        case 7:
-            byte displayPrint[3];
-            for (int i = 0; i < 3; i++)
-                displayPrint[i] = getNumberToPrint(bpm)[i];
-            sevenSeg.setAll(displayPrint);
-
-            if (midiClockState)
-            {
-                MIDI.sendRealTime(midi::MidiType::Stop);
-                midiClockState = !midiClockState;
-                setOled("BPM", "CLCK OFF");
-            }
-            else
-            {
-                MIDI.sendRealTime(midi::MidiType::Start);
-                midiClockState = !midiClockState;
-                setOled("BPM", "CLOCK ON");
-            }
-            break;
-        }
+        callCommand(buttonNumber, 1);
         break;
     }
 }
