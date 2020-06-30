@@ -17,13 +17,9 @@ void setupButtons()
         buttonConfigs[i].setFeature(ButtonConfig::kFeatureSuppressAfterClick);
         buttonConfigs[i].setClickDelay(CLICK_DELAY);
 
-        // DISABLED No Long Click for buttons 5 & 6
-        // if (i != 4 && i != 5)
-        // {
         buttonConfigs[i].setFeature(ButtonConfig::kFeatureLongPress);
         buttonConfigs[i].setFeature(ButtonConfig::kFeatureSuppressAfterLongPress);
         buttonConfigs[i].setLongPressDelay(LONG_PRESS_DELAY);
-        // }
 
         // Add repeat press for bank change buttons (3 & 4)
         if (i == 2 || i == 3)

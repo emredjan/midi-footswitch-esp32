@@ -71,7 +71,7 @@ void callCommand(byte program, bool longPress)
     }
 }
 
-void command_1()
+void command_1() // Flanger etc.
 {
     if (!commandSent[1])
     {
@@ -94,7 +94,7 @@ void command_1()
     commandSent[1] = !commandSent[1];
 }
 
-void command_2()
+void command_2() // Phaser
 {
     if (!commandSent[2])
     {
@@ -117,7 +117,7 @@ void command_2()
     commandSent[2] = !commandSent[2];
 }
 
-void command_2L()
+void command_2L() // Uvibe? Boost?
 {
     if (!commandSentLong[2])
     {
@@ -132,7 +132,7 @@ void command_2L()
     commandSentLong[2] = !commandSentLong[2];
 }
 
-void command_3()
+void command_3() // Rotary
 {
     if (!commandSent[3])
     {
@@ -155,7 +155,7 @@ void command_3()
     commandSent[3] = !commandSent[3];
 }
 
-void command_4()
+void command_4() // Tremolo
 {
     if (!commandSent[4])
     {
@@ -178,7 +178,7 @@ void command_4()
     commandSent[4] = !commandSent[4];
 }
 
-void command_5()
+void command_5() // Chorus
 {
     if (!commandSent[5])
     {
@@ -193,7 +193,7 @@ void command_5()
     commandSent[5] = !commandSent[5];
 }
 
-void command_5L()
+void command_5L() // Chorus 2
 {
     if (!commandSentLong[5])
     {
@@ -208,7 +208,7 @@ void command_5L()
     commandSentLong[5] = !commandSentLong[5];
 }
 
-void command_6()
+void command_6() // Uvibe? Boost?
 {
     if (!commandSent[6])
     {
@@ -223,7 +223,7 @@ void command_6()
     commandSent[6] = !commandSent[6];
 }
 
-void command_6L()
+void command_6L() // Something weird? Formant?
 {
     if (!commandSentLong[6])
     {
@@ -238,7 +238,7 @@ void command_6L()
     commandSentLong[6] = !commandSentLong[6];
 }
 
-void command_7()
+void command_7() // Tap Tempo
 {
     tapTempo();
 
@@ -254,7 +254,7 @@ void command_7()
     setOled("BPM", "CLOCK ON");
 }
 
-void command_7L()
+void command_7L() // MIDI Clock start stop
 {
     byte displayPrint[3];
     for (int i = 0; i < 3; i++)
@@ -275,7 +275,7 @@ void command_7L()
     }
 }
 
-void command_8()
+void command_8() // Wah
 {
     if (!commandSent[8])
     {
@@ -298,7 +298,7 @@ void command_8()
     commandSent[8] = !commandSent[8];
 }
 
-void command_8L()
+void command_8L() // Wah 2
 {
     if (!commandSentLong[8])
     {
