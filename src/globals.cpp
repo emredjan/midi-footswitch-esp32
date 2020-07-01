@@ -89,8 +89,8 @@ bool commandSentLong[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // to make it easy from 1
     Channel 16: MIDI Switcher
 */
 
-const byte CH_MODFACTOR = 1;
-const byte CH_IRIDIUM = 2;
+const byte CH_MODFACTOR = 5;
+const byte CH_IRIDIUM = 1;
 const byte CH_EQ = 4;
 const byte CH_SWITCHER = 16;
 
