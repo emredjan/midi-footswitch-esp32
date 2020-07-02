@@ -73,10 +73,13 @@ extern U8G2_SSD1306_128X64_NONAME_F_HW_I2C display;
 extern bool commandSent[9];
 extern bool commandSentLong[9];
 
-extern const byte CH_MODFACTOR;
 extern const byte CH_IRIDIUM;
+extern const byte CH_COMPADRE;
+extern const byte CH_SUNSET;
 extern const byte CH_EQ;
-extern const byte CH_SWITCHER ;
+extern const byte CH_MODFACTOR;
+extern const byte CH_COLLIDER;
+extern const byte CH_SWITCHER;
 
 extern const char * BANK_NAMES[];
 

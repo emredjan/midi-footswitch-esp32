@@ -72,14 +72,6 @@ bool commandSent[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // to make it easy from 1
 bool commandSentLong[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // to make it easy from 1
 
 /*
-    Channel  1: Eventide ModFactor
-    Channel  2: Strymon Iridium
-    *Channel  3: Strymon Compadre
-    Channel  4: Source Audio Programmable EQ
-    *Channel  5: Source Audio Collider
-    Channel 16: MIDI Switcher
-
-
     Channel  1: Strymon Iridium
     Channel  2: Strymon Compadre
     Channel  3: Strymon Sunset
@@ -89,9 +81,12 @@ bool commandSentLong[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // to make it easy from 1
     Channel 16: MIDI Switcher
 */
 
-const byte CH_MODFACTOR = 5;
 const byte CH_IRIDIUM = 1;
+const byte CH_COMPADRE = 2;
+const byte CH_SUNSET = 3;
 const byte CH_EQ = 4;
+const byte CH_MODFACTOR = 5;
+const byte CH_COLLIDER = 6;
 const byte CH_SWITCHER = 16;
 
 const char * BANK_NAMES[] = {
