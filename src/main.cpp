@@ -30,10 +30,6 @@ void setup()
     Serial.begin(115200);
     MIDI.begin(MIDI_CHANNEL_OMNI);
 
-    // Disable Unused Switcher Relays
-    for (byte i = 0; i < NUM_RELAYS_UNUSED; i++)
-        MIDI.sendProgramChange(100 + SW_RELAYS_UNUSED[i], CH_SWITCHER);
-
     // Start by displaying a dash
     byte displayPrint[3] = {B10111111, B10111111, B10111111};
     sevenSeg.setAll(displayPrint);

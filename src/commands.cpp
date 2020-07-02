@@ -75,7 +75,7 @@ void command_1() // Flanger etc.
 {
     if (!commandSent[1])
     {
-        MIDI.sendProgramChange(7, CH_MODFACTOR); // ModFactor Chorus
+        MIDI.sendProgramChange(7, CH_MODFACTOR); // ModFactor Subtle Flange
         setOled("FLNGR", "ON");
 
         expressionEnabled[0] = true;
@@ -117,16 +117,16 @@ void command_2() // Phaser
     commandSent[2] = !commandSent[2];
 }
 
-void command_2L() // Uvibe? Boost?
+void command_2L() // Boost
 {
     if (!commandSentLong[2])
     {
-        MIDI.sendProgramChange(113, CH_SWITCHER); // Booster
+        // TODO: Booster
         setOled("BOOST", "ON");
     }
     else
     {
-        MIDI.sendProgramChange(103, CH_SWITCHER); // Booster
+        // TODO: Booster Off
         setOled("BOOST", "OFF");
     }
     commandSentLong[2] = !commandSentLong[2];
@@ -136,7 +136,7 @@ void command_3() // Rotary
 {
     if (!commandSent[3])
     {
-        MIDI.sendProgramChange(11, CH_MODFACTOR); // ModFactor Rotary
+        MIDI.sendProgramChange(10, CH_MODFACTOR); // ModFactor Rotary
         setOled("ROTRY", "ON");
 
         expressionEnabled[0] = true;
@@ -159,7 +159,7 @@ void command_4() // Tremolo
 {
     if (!commandSent[4])
     {
-        MIDI.sendProgramChange(13, CH_MODFACTOR); // ModFactor Tremolo
+        MIDI.sendProgramChange(11, CH_MODFACTOR); // ModFactor Tremolo
         setOled("TREM", "ON");
 
         expressionEnabled[0] = true;
@@ -182,13 +182,13 @@ void command_5() // Chorus
 {
     if (!commandSent[5])
     {
-        MIDI.sendProgramChange(2, CH_MODFACTOR); // ModFactor Flanger
-        setOled("CHORS", "ON");
+        MIDI.sendProgramChange(2, CH_MODFACTOR); // ModFactor Chorus 70s
+        setOled("CHR70", "ON");
     }
     else
     {
         MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
-        setOled("CHORS", "OFF");
+        setOled("CHR70", "OFF");
     }
     commandSent[5] = !commandSent[5];
 }
@@ -197,22 +197,22 @@ void command_5L() // Chorus 2
 {
     if (!commandSentLong[5])
     {
-        MIDI.sendProgramChange(2, CH_MODFACTOR); // ModFactor Flanger
-        setOled("CHRS2", "ON");
+        MIDI.sendProgramChange(1, CH_MODFACTOR); // ModFactor Chorus 80s
+        setOled("CHR80", "ON");
     }
     else
     {
         MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
-        setOled("CHRS2", "OFF");
+        setOled("CHR80", "OFF");
     }
     commandSentLong[5] = !commandSentLong[5];
 }
 
-void command_6() // Uvibe? Boost?
+void command_6() // Uvibe
 {
     if (!commandSent[6])
     {
-        MIDI.sendProgramChange(2, CH_MODFACTOR); // ModFactor Flanger
+        MIDI.sendProgramChange(4, CH_MODFACTOR); // ModFactor Uni-Vibe
         setOled("UVIBE", "ON");
     }
     else
@@ -227,7 +227,7 @@ void command_6L() // Something weird? Formant?
 {
     if (!commandSentLong[6])
     {
-        MIDI.sendProgramChange(2, CH_MODFACTOR); // ModFactor Flanger
+        MIDI.sendProgramChange(9, CH_MODFACTOR); // ModFactor Auto Filter
         setOled("WEIRD", "ON");
     }
     else
@@ -279,8 +279,8 @@ void command_8() // Wah
 {
     if (!commandSent[8])
     {
-        MIDI.sendProgramChange(5, CH_MODFACTOR); // ModFactor Wah
-        setOled("WAH", "ON");
+        MIDI.sendProgramChange(5, CH_MODFACTOR); // ModFactor Vintage Wah
+        setOled("VWAH", "ON");
 
         expressionEnabled[0] = true;
         expressionChannel[0] = CH_MODFACTOR;
@@ -289,7 +289,7 @@ void command_8() // Wah
     else
     {
         MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
-        setOled("WAH", "OFF");
+        setOled("VWAH", "OFF");
 
         expressionEnabled[0] = true;
         expressionChannel[0] = expressionChannelDefault[0];
@@ -302,8 +302,8 @@ void command_8L() // Wah 2
 {
     if (!commandSentLong[8])
     {
-        MIDI.sendProgramChange(5, CH_MODFACTOR); // ModFactor Wah
-        setOled("WAH2", "ON");
+        MIDI.sendProgramChange(6, CH_MODFACTOR); // ModFactor Talk Wah
+        setOled("TWAH", "ON");
 
         expressionEnabled[0] = true;
         expressionChannel[0] = CH_MODFACTOR;
@@ -312,7 +312,7 @@ void command_8L() // Wah 2
     else
     {
         MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
-        setOled("WAH2", "OFF");
+        setOled("TWAH", "OFF");
 
         expressionEnabled[0] = true;
         expressionChannel[0] = expressionChannelDefault[0];

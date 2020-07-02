@@ -94,11 +94,6 @@ const byte CH_IRIDIUM = 1;
 const byte CH_EQ = 4;
 const byte CH_SWITCHER = 16;
 
-const byte SW_RELAYS_USED[] = {1, 2, 3, 6};
-const byte SW_RELAYS_UNUSED[] = {4, 5, 7, 8};
-const size_t NUM_RELAYS_USED = sizeof(SW_RELAYS_USED) / sizeof(SW_RELAYS_USED[0]);
-const size_t NUM_RELAYS_UNUSED = sizeof(SW_RELAYS_UNUSED) / sizeof(SW_RELAYS_UNUSED[0]);
-
 const char * BANK_NAMES[] = {
     "GENERIC",
     "LOW GAIN",
