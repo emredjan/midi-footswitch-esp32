@@ -201,7 +201,7 @@ void preset_1_1()
 {
     MIDI.sendProgramChange(0, CH_IRIDIUM); // Iridium Clean
     MIDI.sendProgramChange(1, CH_SWITCHER); // Switcher 1 On 2 Off
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(4, CH_EQ);      // EQ Bypass
 
     expressionEnabled[0] = true;
@@ -216,7 +216,7 @@ void preset_1_2()
 {
     MIDI.sendProgramChange(1, CH_IRIDIUM); // Iridium Crunch
     MIDI.sendProgramChange(2, CH_SWITCHER); // Switcher 1 Off 2 On
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(4, CH_EQ);      // EQ Bypass
 
     expressionEnabled[0] = true;
@@ -232,7 +232,7 @@ void preset_1_3()
     MIDI.sendProgramChange(2, CH_IRIDIUM); // Iridium Pedal Platform
 
 
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(4, CH_EQ);      // EQ Bypass
 
     expressionEnabled[0] = true;
@@ -247,7 +247,7 @@ void preset_1_4()
     MIDI.sendProgramChange(2, CH_IRIDIUM); // Iridium Pedal Platform
 
 
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(0, CH_EQ);      // EQ Lead Boost
 
     expressionEnabled[0] = true;
@@ -263,7 +263,7 @@ void preset_2_1()
 
 
 
-    MIDI.sendProgramChange(2, CH_MODFACTOR); // ModFactor Chorus
+    MIDI.sendProgramChange(2, CH_H9); // H9 Chorus
     MIDI.sendProgramChange(4, CH_EQ);    // EQ Bypass
 
     expressionEnabled[0] = true;
@@ -279,7 +279,7 @@ void preset_2_2()
 
 
 
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(4, CH_EQ);      // EQ Bypass
 
     expressionEnabled[0] = true;
@@ -294,7 +294,7 @@ void preset_2_3()
     MIDI.sendProgramChange(3, CH_IRIDIUM); // Iridium Drive
 
 
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(4, CH_EQ);      // EQ Bypass
 
     expressionEnabled[0] = true;
@@ -310,7 +310,7 @@ void preset_2_4()
 
 
 
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(0, CH_EQ);      // EQ Lead Boost
 
     expressionEnabled[0] = true;
@@ -326,7 +326,7 @@ void preset_3_1()
 
 
 
-    MIDI.sendProgramChange(1, CH_MODFACTOR); // ModFactor Chorus (80s)
+    MIDI.sendProgramChange(1, CH_H9); // H9 Chorus (80s)
     MIDI.sendProgramChange(4, CH_EQ);    // EQ Bypass
 
     expressionEnabled[0] = true;
@@ -341,7 +341,7 @@ void preset_3_2()
     MIDI.sendProgramChange(2, CH_IRIDIUM); // Iridium Pedal Platform
 
 
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(1, CH_EQ);      // EQ TubeScreamer
 
     expressionEnabled[0] = true;
@@ -357,7 +357,7 @@ void preset_3_3()
 
 
 
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(1, CH_EQ);      // EQ TubeScreamer
 
     expressionEnabled[0] = true;
@@ -373,7 +373,7 @@ void preset_3_4()
 
 
 
-    MIDI.sendProgramChange(1, CH_MODFACTOR); // ModFactor Chorus (80s)
+    MIDI.sendProgramChange(1, CH_H9); // H9 Chorus (80s)
     MIDI.sendProgramChange(1, CH_EQ);    // EQ TubeScreamer
 
     expressionEnabled[0] = true;
@@ -388,7 +388,7 @@ void preset_4_1()
     MIDI.sendProgramChange(5, CH_IRIDIUM); // Iridium Jangly
 
 
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(4, CH_EQ);      // EQ Bypass
 
     expressionEnabled[0] = true;
@@ -403,7 +403,7 @@ void preset_4_2()
     MIDI.sendProgramChange(5, CH_IRIDIUM); // Iridium Jangly
 
 
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(4, CH_EQ);      // EQ Bypass
 
     expressionEnabled[0] = true;
@@ -419,11 +419,11 @@ void preset_4_3()
 
 
 
-    MIDI.sendProgramChange(9, CH_MODFACTOR); // ModFactor Auto Filter
+    MIDI.sendProgramChange(9, CH_H9); // H9 Auto Filter
     MIDI.sendProgramChange(4, CH_EQ);    // EQ Bypass
 
     expressionEnabled[0] = true;
-    expressionChannel[0] = CH_MODFACTOR;
+    expressionChannel[0] = CH_H9;
     expressionCC[0] = 11;
 
     setOled("F WAH", BANK_NAMES[3]);
@@ -435,11 +435,11 @@ void preset_4_4()
 
 
 
-    MIDI.sendProgramChange(4, CH_MODFACTOR); // ModFactor Uni-Vibe
+    MIDI.sendProgramChange(4, CH_H9); // H9 Uni-Vibe
     MIDI.sendProgramChange(4, CH_EQ);    // EQ Bypass
 
     expressionEnabled[0] = true;
-    expressionChannel[0] = CH_MODFACTOR;
+    expressionChannel[0] = CH_H9;
     expressionCC[0] = 11;
 
     setOled("PHASD", BANK_NAMES[3]);
@@ -448,7 +448,7 @@ void preset_4_4()
 void preset_5_1()
 {
     MIDI.sendProgramChange(3, CH_SWITCHER);    // Switcher All On
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(4, CH_EQ);      // EQ Bypass
 
     expressionEnabled[0] = true;
@@ -461,7 +461,7 @@ void preset_5_1()
 void preset_5_2()
 {
     MIDI.sendProgramChange(0, CH_SWITCHER);    // Switcher All Off
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(4, CH_EQ);      // EQ Bypass
 
     expressionEnabled[0] = false;
@@ -479,7 +479,7 @@ void preset_5_4()
     MIDI.sendProgramChange(0, CH_SWITCHER); // Switcher All Off
     delay(1000);
 
-    MIDI.sendProgramChange(125, CH_MODFACTOR); // ModFactor Bypass
+    MIDI.sendProgramChange(125, CH_H9); // H9 Bypass
     MIDI.sendProgramChange(4, CH_EQ);      // EQ Bypass
 
     expressionEnabled[0] = false;

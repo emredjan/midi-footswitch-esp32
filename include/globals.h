@@ -77,7 +77,7 @@ extern const byte CH_IRIDIUM;
 extern const byte CH_COMPADRE;
 extern const byte CH_SUNSET;
 extern const byte CH_EQ;
-extern const byte CH_MODFACTOR;
+extern const byte CH_H9;
 extern const byte CH_COLLIDER;
 extern const byte CH_SWITCHER;
 

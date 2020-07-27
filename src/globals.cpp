@@ -19,7 +19,7 @@ byte expressionChannel[] = {1, 2};
 const byte EXPR_PINS[] = {32, 33};
 
 const byte expressionCCDefault[] = {7, 11};
-const byte expressionChannelDefault[] = {CH_IRIDIUM, CH_MODFACTOR};
+const byte expressionChannelDefault[] = {CH_IRIDIUM, CH_H9};
 
 /*** Button Things ***/
 
@@ -76,7 +76,7 @@ bool commandSentLong[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // to make it easy from 1
     Channel  2: Strymon Compadre
     Channel  3: Strymon Sunset
     Channel  4: Source Audio Programmable EQ
-    Channel  5: Eventide ModFactor / H9
+    Channel  5: Eventide H9
     Channel  6: Source Audio Collider
     Channel 16: MIDI Switcher
 */
@@ -85,7 +85,7 @@ const byte CH_IRIDIUM = 1;
 const byte CH_COMPADRE = 2;
 const byte CH_SUNSET = 3;
 const byte CH_EQ = 4;
-const byte CH_MODFACTOR = 5;
+const byte CH_H9 = 5;
 const byte CH_COLLIDER = 6;
 const byte CH_SWITCHER = 16;
 
